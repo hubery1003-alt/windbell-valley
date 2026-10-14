@@ -9,9 +9,9 @@
   "states": {
     "traveler": {"row":0,"walk":{"fps":7,"loop":true,"frames":[[154,5,171,249],[529,4,105,251],[873,5,168,249],[1258,5,133,250]]},"idle":{"frame":1,"breathingAmplitudeWorldPx":1.4}},
     "tea-maker": {"row":1,"walk":{"fps":6,"loop":true,"frames":[[147,261,170,247],[507,261,159,246],[868,261,163,247],[1242,261,168,246]]},"idle":{"frame":1,"breathingAmplitudeWorldPx":1.4}},
-    "postman": {"row":2,"walk":{"fps":6,"loop":true,"frames":[[135,514,181,256],[499,514,144,256],[854,514,176,256],[1245,514,151,256]]},"idle":{"frame":1,"breathingAmplitudeWorldPx":1.4}},
-    "cat": {"row":3,"walk":{"fps":6,"loop":true,"frames":[[115,768,222,226],[459,768,238,226],[837,768,245,224],[1211,768,231,227]]},"idle":{"frame":1,"breathingAmplitudeWorldPx":1.4}}
+    "postman": {"row":2,"walk":{"fps":6,"loop":true,"frames":[[135,514,181,254],[499,514,144,254],[854,514,176,254],[1245,514,151,254]]},"idle":{"frame":1,"breathingAmplitudeWorldPx":1.4}},
+    "cat": {"row":3,"walk":{"fps":6,"loop":true,"frames":[[115,795,222,197],[459,799,238,193],[837,802,245,188],[1211,794,231,199]]},"idle":{"frame":1,"breathingAmplitudeWorldPx":1.4}}
   },
-  "runtimeExtraction": "Bounds measured per 384x256 source cell with alpha > 130 and a 2px pad; normalized per row to a common display height.",
-  "notes": "Postman cells include at most 2px of lower row overlap in the transparent pad; artwork is sampled within the original atlas. Four-frame walk cycles are stylized rather than physically measured locomotion."
+  "runtimeExtraction": "Alpha > 130; 2px pad clamped within each 384x256 source cell; normalized per row to a common display height.",
+  "notes": "The cat row skips the first 20px to exclude postman foot overlap at the source row boundary."
 }

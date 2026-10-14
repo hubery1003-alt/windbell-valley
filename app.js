@@ -53,7 +53,7 @@ let audioContext,soundOn=false,soundPending=false;
 async function setSound(on){
  if(soundPending)return;soundPending=true;const button=$('#sound');button.disabled=true;
  try{if(on){audioContext??=new(window.AudioContext||window.webkitAudioContext)();await audioContext.resume();$('#music').volume=.37;$('#creek').volume=.3;await Promise.all([$('#music').play(),$('#creek').play()]);soundOn=true;bell(880);toast('正在播放「风经过茶屋」 · 原创钢琴与笛声');}else{$('#music').pause();$('#creek').pause();soundOn=false;}
- }catch(error){$('#music').pause();$('#creek').pause();soundOn=false;toast('声音暂未打开，请再点一次试试。');console.warn('Audio playback:',error.message);}finally{button.disabled=false;soundPending=false;button.setAttribute('aria-pressed',String(soundOn));button.querySelector('span').textContent=soundOn?'溪谷的声音':'开启声音';}
+ }catch(error){$('#music').pause();$('#creek').pause();soundOn=false;toast('声音暂未打开，请再点一次试试。');console.warn('Audio playback:',error.message);}finally{button.disabled=false;soundPending=false;button.setAttribute('aria-pressed',String(soundOn));button.setAttribute('aria-label',soundOn?'溪谷的声音':'开启声音');button.querySelector('span').textContent=soundOn?'溪谷的声音':'开启声音';}
 }
 $('#sound').addEventListener('click',()=>setSound(!soundOn));
 function bell(frequency=1046){if(!soundOn||!audioContext||audioContext.state!=='running')return;for(const [ratio,amp]of[[1,.035],[2.76,.009],[5.4,.003]]){const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.value=frequency*ratio;g.gain.setValueAtTime(amp,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+2.8);o.connect(g).connect(audioContext.destination);o.start();o.stop(audioContext.currentTime+3);}}
