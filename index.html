@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3e9">
+  <meta name="description" content="风铃溪谷 Windbell Valley — 一个温暖手绘的可漫游村庄。沿溪漫步，与村民聊天，听风铃和原创配乐。">
+  <meta property="og:title" content="风铃溪谷 / Windbell Valley"><meta property="og:description" content="把日子，过成一阵风。来溪谷走走吧。"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://hubery1003-alt.github.io/windbell-valley/assets/valley-panorama.png">
+  <title>风铃溪谷 / Windbell Valley</title>
+  <link rel="icon" href="assets/windbell.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="风铃溪谷首页"><img src="assets/windbell.svg" alt="" width="40" height="48"><span><b>风铃溪谷</b><small>WINDBELL VALLEY</small></span></a>
+    <nav aria-label="主导航"><a class="active" href="#valley">溪谷漫游</a><a href="#journal">村民手记</a><a href="#about">关于溪谷</a></nav>
+    <button class="sound-button" id="sound" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4zM17 8c3 2 3 6 0 8M20 5c5 4 5 10 0 14"/></svg><span>开启声音</span><i class="sound-dot"></i></button>
+  </header>
+  <main id="home">
+    <section class="intro"><div><p class="eyebrow"><span></span> A LITTLE PLACE TO GET LOST</p><h1>把日子，过成一阵风。</h1><p class="intro-copy">一条溪，几间小屋，还有一些不着急的人。<span>欢迎来到风铃溪谷。</span></p></div><div class="intro-note"><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M8 33c25-20 33-18 28-4-8 14-10 17-3 19 12 2 34-21 25-24-8-5-7 16 7 13 12-2 24-15 29-23M83 12l13-1-2 12"/></svg><span>慢一点，也没关系</span></div></section>
+    <section id="valley" class="valley-wrap" aria-label="可互动的风铃溪谷">
+      <div class="scene" id="scene">
+        <canvas id="world" aria-label="溪谷村庄地图：方向键或 WASD 移动，点击村道自动行走，E 与附近村民聊天。" tabindex="0"></canvas>
+        <div class="loading" id="loading"><img src="assets/windbell.svg" alt=""><strong>风正在把溪谷吹醒…</strong><span>正在铺好村道与花草</span></div>
+        <div class="scene-top"><div class="place-name"><span class="micro">此刻，你在</span><h2 id="place">风铃广场</h2><p id="place-sub">树荫下，每一阵风都有回声。</p></div><div class="time-chip"><span class="sun-icon">☀</span><span id="time-label">初秋 · 午后</span><span class="weather-dot"></span>微风</div></div>
+        <div id="talk-hint" class="talk-hint" hidden>按 E 聊天</div>
+        <div class="dialogue" id="dialogue" hidden><div><span class="dialogue-eyebrow">溪谷里的小小对话</span><h3 id="speaker"></h3><p id="speech"></p></div><button id="close-dialogue" aria-label="关闭对话">×</button></div>
+        <div class="scene-bottom"><button class="tour-control" id="tour" aria-pressed="false"><span class="play-icon">▷</span><span>随风漫游</span></button><p class="keyboard-guide"><kbd>←</kbd><kbd>→</kbd> 漫步 <span>·</span> 点击村道前往 <span>·</span> <kbd>E</kbd> 聊天</p><div class="view-controls"><button id="zoom-out" aria-label="缩小视野">−</button><button id="overview" aria-label="查看全景" aria-pressed="false">全景</button><button id="zoom-in" aria-label="放大视野">＋</button><button id="fullscreen" aria-label="全屏展示"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 2H2v5M13 2h5v5M18 13v5h-5M7 18H2v-5"/></svg></button></div></div>
+        <div class="mobile-pad" aria-label="触屏移动"><button data-dir="-1" aria-label="向左走">←</button><button id="mobile-talk" aria-label="与村民聊天">聊</button><button data-dir="1" aria-label="向右走">→</button></div>
+      </div>
+      <div class="map-bar"><div class="map-label"><span>溪谷小地图</span><small id="discovery">已走访 1 / 5</small></div><div class="map-route" id="map-route"><div class="map-track"></div><div id="map-marker" class="map-marker"></div><button data-place="0" class="map-stop"><i></i><span>林间车站</span></button><button data-place="1" class="map-stop"><i></i><span>麦香面包房</span></button><button data-place="2" class="map-stop current"><i></i><span>风铃广场</span></button><button data-place="3" class="map-stop"><i></i><span>溪上石桥</span></button><button data-place="4" class="map-stop"><i></i><span>向日葵坡</span></button></div><div class="time-selector" role="group" aria-label="选择时间"><button data-time="day" class="selected" aria-pressed="true">晴日</button><button data-time="dusk" aria-pressed="false">黄昏</button><button data-time="night" aria-pressed="false">星夜</button></div></div>
+      <p class="scene-caption"><span><i></i>溪谷一直在呼吸</span><span>风铃、溪流与炊烟 · 每一次停留，都有一点不同</span><button id="help">漫游指南 ↗</button></p>
+    </section>
+    <section id="journal" class="journal"><div class="section-title"><div><p class="eyebrow">PEOPLE & LITTLE STORIES</p><h2>这里的日子，慢慢发生。</h2></div><p>不必赶路。<br>坐一会儿，听听他们的故事。</p></div><div class="journal-grid">
+      <button class="journal-card" data-person="tea"><div class="portrait tea"><img src="assets/characters.png" alt="茶婆婆的手绘肖像" loading="lazy"></div><div><span class="card-tag">风铃茶屋 · 茶婆婆</span><h3>一杯茶的时间</h3><p>“溪水烧的茶，要等风铃响过三声才好喝。”</p><span class="card-link">去听她说说 <b>↗</b></span></div></button>
+      <button class="journal-card" data-person="post"><div class="portrait post"><img src="assets/characters.png" alt="邮差阿岚的手绘肖像" loading="lazy"></div><div><span class="card-tag">村道上 · 邮差阿岚</span><h3>寄给远方的风</h3><p>“今天的信很轻，可能装着好消息。”</p><span class="card-link">去打个招呼 <b>↗</b></span></div></button>
+      <button class="journal-card" data-person="cat"><div class="portrait cat"><img src="assets/characters.png" alt="橘猫麦粒的手绘肖像" loading="lazy"></div><div><span class="card-tag">面包房门口 · 麦粒</span><h3>猫的午后计划</h3><p>晒太阳，追蝴蝶，再假装什么都没发生。</p><span class="card-link">去看看它 <b>↗</b></span></div></button>
+    </div></section>
+    <section id="about" class="about"><img src="assets/windbell.svg" alt="" width="56" height="66"><div><p class="eyebrow">A SMALL WORLD, A SOFT HEART</p><h2>愿你总能找到，一处让心慢下来的地方。</h2><p>风铃溪谷是一个原创手绘互动村庄。远山是它的屋檐，溪声是它的时钟。<br>在这里，探索没有终点，停下来也是一件正经事。</p></div><a href="https://github.com/hubery1003-alt/windbell-valley" target="_blank" rel="noopener noreferrer">溪谷制作手记 ↗</a></section>
+  </main>
+  <footer><span>风铃溪谷 / Windbell Valley</span><span>原创场景 · 原创角色 · 原创配乐</span><span>Made for a slower afternoon.</span></footer>
+  <dialog id="guide"><button class="modal-close" aria-label="关闭指南">×</button><p class="eyebrow">WELCOME, WANDERER</p><h2>走走，停停，听听。</h2><p>你扮演背着橙色背包的旅人“小禾”。这里没有任务倒计时，只有一条值得慢慢走的村道。</p><ul><li><strong>走动</strong>：← → 或 A / D；↑ ↓ 或 W / S 微调村道上的位置。按住 Shift 快步走。</li><li><strong>点击前往</strong>：点击画面任意村道位置，小禾会沿路行走并跨过石桥。</li><li><strong>与村民聊天</strong>：走到他们身边按 E，或点击人物。手机可用下方方向按钮。</li><li><strong>看整个村庄</strong>：选择“全景”，或点击小地图上的地点。− / ＋ 调整视野。</li><li><strong>让风带路</strong>：“随风漫游”会自动沿村道游览；再次点击即可停止。</li><li><strong>听听溪谷</strong>：点击“开启声音”，播放原创钢琴与笛声配乐、溪流和风铃。再次点击静音。</li></ul><p class="guide-end">晴日、黄昏与星夜，都有各自的小小温柔。</p></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <audio id="music" src="assets/windbell-valley.mp3" loop preload="none"></audio><audio id="creek" src="assets/creek.mp3" loop preload="none"></audio>
+  <script type="module" src="app.js"></script>
+</body></html>
